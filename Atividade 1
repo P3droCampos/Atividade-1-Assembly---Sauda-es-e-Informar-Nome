@@ -1,0 +1,45 @@
+;Atividade Saudações e Informar Nome
+;Programa em Assembly
+;Author: Pedro, FEAP
+;Version: Pedro Lucas Campos curso Engenharia da Computação
+section .data
+    prompt db "Digite seu nome: ", 0
+    greeting db "Saudações, ", 0
+    name db 64
+
+section .text
+    global _start
+
+_start:
+    ; Exibir a mensagem de prompt
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, prompt
+    mov edx, 16
+    int 0x80
+
+    ; Ler o nome do usuário
+    mov eax, 3
+    mov ebx, 0
+    mov ecx, name
+    mov edx, 64
+    int 0x80
+
+    ; Exibir a mensagem de saudações
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, greeting
+    mov edx, 12
+    int 0x80
+
+    ; Exibir o nome lido
+    mov eax, 4
+    mov ebx, 1
+    mov ecx, name
+    mov edx, 64
+    int 0x80
+
+    ; Sair do programa
+    mov eax, 1
+    mov ebx, 0
+    int 0x80
